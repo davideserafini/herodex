@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Herodex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
+</head>
+
+<body>
+  <header id="menus-wrapper">
+    <ul>
+      <li>
+        <a href="/dc/flash.html">Flash</a>
+      </li>
+      <li>
+        <a href="/dc/batman.html">Batman</a>
+      </li>
+    </ul>
+
+    <a href="/">Herodex</a>
+
+    <ul>
+      <li>
+        <a href="/marvel/iron-man.html">Iron Man</a>
+      </li>
+      <li>
+        <a href="/marvel/captain-america.html">Captain America</a>
+      </li>
+    </ul>
+  </header>
+
+  <main id="content">
+    <div id="heroes-grid">
+      <a href="/dc/flash.html">
+        <img src="" alt="Flash" />
+      </a>
+      <a href="/dc/batman.html">
+        <img src="" alt="Batman" />
+      </a>
+      <a href="/marvel/iron-man.html">
+        <img src="" alt="Iron Man" />
+      </a>
+      <a href="/marvel/captain-america.html">
+        <img src="" alt="Captain America" />
+      </a>
+    </div>
+  </main>
+
+  <script src="/js/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
