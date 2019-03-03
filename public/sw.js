@@ -20,32 +20,32 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   console.log('trying to fetch ' + event.request.url);
+  const requestUrl = new URL(event.request.url);
 
-  if (event.request.url.endsWith('.json') || 
-      event.request.url.endsWith('.js') || 
-      event.request.url.endsWith('.css') || 
-      event.request.url.endsWith('.jpg') || 
-      event.request.url.endsWith('.html') || 
-      event.request.url.endsWith('/')) {
+  if (requestUrl.pathname.endsWith('.json') || 
+      requestUrl.pathname.endsWith('.js') || 
+      requestUrl.pathname.endsWith('.css') || 
+      requestUrl.pathname.endsWith('.jpg') || 
+      requestUrl.pathname.endsWith('.html') || 
+      requestUrl.pathname.endsWith('/')) {
     event.respondWith(
       caches.match(event.request)
         .then(response => {
           // Cache hit - return response
           if (response) {
-            console.log('cache hit for ' + event.request.url);
+            console.log('cache hit for ' + requestUrl.href);
             return response;
           }
   
           // If it's a request for image or json, check if it's in the cache,
           // otherwise fetch and save it
-          if (event.request.url.indexOf('.jpg') > -1 || 
-              event.request.url.indexOf('.json') > -1) {
+          if (requestUrl.pathname.endsWith('.jpg') || 
+              requestUrl.pathname.endsWith('.json')) {
             return fetchAndCache(event);
           }
           // If it's an html file, this is something we can enhance
           // Return immediately the site shell, and then fire an event to load the content
-          const requestUrl = new URL(event.request.url);
-          if (event.request.url.indexOf('.html') > -1 || requestUrl.pathname === '/') {
+          if (requestUrl.pathname.endsWith('.html') || requestUrl.pathname === '/') {
             return caches.match('/site-shell.html')
               .then(response => {
                 console.log('returning site-shell.html for ' + event.request.url);
