@@ -1,41 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Herodex</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
-</head>
-
-<body>
-  <header id="menus-wrapper">
-    <ul>
-      <li>
-        <a href="/heroes/flash.html">Flash</a>
-      </li>
-      <li>
-        <a href="/heroes/batman.html">Batman</a>
-      </li>
-    </ul>
-
-    <a href="/">Herodex</a>
-
-    <ul>
-      <li>
-        <a href="/heroes/iron-man.html">Iron Man</a>
-      </li>
-      <li>
-        <a href="/heroes/captain-america.html">Captain America</a>
-      </li>
-    </ul>
-  </header>
-
-  <main id="content">
     <div id="heroes-grid">
       <a href="/heroes/flash.html" class="hero-card">
         <img src="/images/the-flash.jpg" alt="Flash" />
@@ -74,22 +37,3 @@
         </div>
       </a>
     </div>
-  </main>
-
-  <script src="/js/main.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js').then(function (registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function (err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-  </script>
-</body>
-
-</html>

@@ -1,11 +1,15 @@
+1
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Herodex</title>
+  <title>Herodex - Offline</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
 </head>
 
@@ -13,10 +17,10 @@
   <header id="menus-wrapper">
     <ul>
       <li>
-        <a href="/dc/flash.html">Flash</a>
+        <a href="/heroes/flash.html">Flash</a>
       </li>
       <li>
-        <a href="/dc/batman.html">Batman</a>
+        <a href="/heroes/batman.html">Batman</a>
       </li>
     </ul>
 
@@ -24,26 +28,26 @@
 
     <ul>
       <li>
-        <a href="/marvel/iron-man.html">Iron Man</a>
+        <a href="/heroes/iron-man.html">Iron Man</a>
       </li>
       <li>
-        <a href="/marvel/captain-america.html">Captain America</a>
+        <a href="/heroes/captain-america.html">Captain America</a>
       </li>
     </ul>
   </header>
 
-  <main id="content" data-load-content="true">
-    Loading content...
+  <main id="content">
+    Oooops, it seems like you're offline
   </main>
 
   <script src="/js/main.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').then(function (registration) {
           // Registration was successful
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
+        }, function (err) {
           // registration failed :(
           console.log('ServiceWorker registration failed: ', err);
         });

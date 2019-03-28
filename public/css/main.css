@@ -69,3 +69,38 @@ body {
 img {
   max-width: 100%;
 }
+
+#heroes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0px;
+}
+
+#heroes-grid .hero-card img {
+  height: 250px;
+  object-fit: cover;
+}
+
+.hero-card {
+  display: block;
+  flex-basis: calc(48% - 20px);
+  background: #fff;
+  box-shadow: rgba(0,0,0, .3) 0px 0px 10px;
+  margin: 10px;
+  color: #000;
+  text-decoration: none;
+}
+.hero-card img {
+  width: 100%;
+}
+.hero-card h2 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-card div {
+  padding: 30px 20px;
+  font-size: 1.15rem;
+  line-height: 1.25em;
+}
