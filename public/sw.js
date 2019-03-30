@@ -58,10 +58,10 @@ self.addEventListener('fetch', event => {
   } else if(pathname.endsWith('.jpg') ||
             pathname.endsWith('.png') ||
             pathname.endsWith('.gif')) {
-    /* CACHE FALLING BACK TO NETOWRK for content images.
+    /* CACHE FALLING BACK TO NETWORK for content images.
         We can suppose these are in cache after the first load, and will stay unchanged.
         If an image is changed, it wil have a new url */
-    console.log('CACHE FALLING BACK TO NETOWRK ' + pathname);
+    console.log('CACHE FALLING BACK TO NETWORK ' + pathname);
     event.respondWith(
       fromCache(event.request.url)
         .then(function(response) {
@@ -69,8 +69,8 @@ self.addEventListener('fetch', event => {
       })
     );
   } else if(pathname.endsWith('-content.part.html')) {
-    /* NETOWRK FALLING BACK TO CACHE for page content */
-    console.log('NETOWRK FALLING BACK TO CACHE ' + pathname);
+    /* NETWORK FALLING BACK TO CACHE for page content */
+    console.log('NETWORK FALLING BACK TO CACHE ' + pathname);
     event.respondWith(
       fromNetwork(event.request.url, true)
         .catch(function() {
@@ -92,14 +92,9 @@ self.addEventListener('fetch', event => {
       }
       const parts = [
         fromCache('/site-shell-top.part.html'),
-        /* fromCache(requestUrl)
-          .then(function(response) {
-            return response || fromNetwork(requestUrl, true).catch(function(err){
-              return fromCache('/offline-content.part.html');
-            });
-          }), */
         fromNetwork(requestUrl, true)
-          .catch(function(){
+          .catch(function(err){
+            console.log('err ', err);
             return fromCache(requestUrl)
               .then(function(response){
                 return response || fromCache('/offline-content.part.html');
@@ -173,6 +168,7 @@ async function updateCacheFromNetwork(request, response) {
   return cache.put(request, response);
 }
 
+// Credits to Jake Archibald for this https://gist.github.com/jakearchibald/d0b7e65496a8ec362f10739c3e28da6e#file-future-js
 async function mergeResponses(responsePromises, headers) {
   const {readable, writable} = new TransformStream();
   
